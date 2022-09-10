@@ -3,12 +3,12 @@ package com.android.developer.exstore.presentation.feature.product
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.android.developer.exstore.presentation.components.DefaultButton
 import com.android.developer.exstore.presentation.feature.product.components.InputOptions
 import com.android.developer.exstore.presentation.feature.product.components.OptionsExStore
 import com.ramcosta.composedestinations.annotation.Destination
@@ -35,19 +35,12 @@ fun ProductScreen(
                 .fillMaxWidth()
         )
 
-        Button(
-            onClick = { /*TODO*/ },
-            shape = MaterialTheme.shapes.large,
-            modifier = Modifier
+
+        DefaultButton(
+            text = "Add to cart $productName", onClick = { }, modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
                 .fillMaxWidth()
-        ) {
-            Text(
-                text = "Add to cart $productName",
-                modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
+        )
 
     }
 }
