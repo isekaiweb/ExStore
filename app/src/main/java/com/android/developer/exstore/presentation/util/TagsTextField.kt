@@ -1,4 +1,4 @@
-package com.android.developer.exstore.presentation.components
+package com.android.developer.exstore.presentation.util
 
 object TagsTextField {
 
