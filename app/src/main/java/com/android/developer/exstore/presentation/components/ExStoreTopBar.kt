@@ -17,12 +17,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ExStoreTopBar(openMenu: () -> Unit) {
+fun ExStoreTopBar(openMenu: () -> Unit, openCart: () -> Unit) {
     val colorOnSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
     CenterAlignedTopAppBar(
         title = { Title() },
         navigationIcon = { NavigationIcon(colorOnSurfaceVariant, openMenu) },
-        actions = { ActionMenu(colorOnSurfaceVariant = colorOnSurfaceVariant) },
+        actions = { ActionMenu(colorOnSurfaceVariant = colorOnSurfaceVariant, openCart = openCart) },
     )
 }
 
@@ -74,7 +74,7 @@ private fun NavigationIcon(
 }
 
 @Composable
-private fun ActionMenu(colorOnSurfaceVariant: Color) {
+private fun ActionMenu(colorOnSurfaceVariant: Color, openCart: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -83,7 +83,7 @@ private fun ActionMenu(colorOnSurfaceVariant: Color) {
             shape = MaterialTheme.shapes.medium
         ),
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = openCart) {
             Icon(
                 imageVector = Icons.Rounded.ShoppingBag, contentDescription = "Cart",
                 tint = colorOnSurfaceVariant,
