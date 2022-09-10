@@ -7,23 +7,19 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.android.developer.exstore.presentation.components.ItemExStore
 import kotlin.random.Random
 
 @Composable
 fun ProductExStore(
     modifier: Modifier = Modifier,
-    getProduct: () -> Unit,
+    getProduct: (String) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -52,14 +48,14 @@ private fun Product(
     name: String,
     desc: String,
     price: Long,
-    getProduct: () -> Unit,
+    getProduct: (String) -> Unit,
 ) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background,
 
             ),
-        onClick = getProduct,
+        onClick = { getProduct(name) },
     ) {
         Image(
             painter = rememberAsyncImagePainter(model = img), contentDescription = desc,
@@ -68,30 +64,8 @@ private fun Product(
                 .aspectRatio(3f / 2f)
         )
         Column(modifier = Modifier.padding(vertical = 16.dp, horizontal = 8.dp)) {
-            Text(text = name, style = MaterialTheme.typography.titleMedium)
-            Spacer(modifier = Modifier.height(2.dp))
-            Text(text = desc, style = MaterialTheme.typography.bodySmall)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = buildAnnotatedString {
-                pushStyle(SpanStyle(fontWeight = FontWeight.Bold, fontSize = 12.sp))
-                append("Rp. ")
-                pop()
-                pushStyle(SpanStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold))
-                append(price.toReadAble())
-            })
+            ItemExStore(name = name, desc = desc, price = price)
         }
     }
 }
 
-private fun Long.toReadAble(): String {
-    var result = ""
-    var n = 0
-    val currency = this.toString().reversed()
-    currency.forEach { char ->
-        n += 1
-        result += if (n % 3 == 0 && n < currency.length) {
-            "$char."
-        } else char
-    }
-    return result.reversed()
-}
