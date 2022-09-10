@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">ExStore</string>
+
+
+    // menu item
+    <string name="label_dashboard">Dashboard</string>
+    <string name="label_cashier">Cashier</string>
+    <string name="label_report">Report</string>
+    <string name="label_management">Management</string>
+    <string name="label_discount_and_voucher">Discount &amp; Voucher</string>
+    <string name="label_setting">Setting</string>
+
+    // footer item
+    <string name="label_help">Help &amp; Support</string>
+    <string name="label_logout">Logout</string>
 </resources>
