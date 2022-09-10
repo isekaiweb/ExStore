@@ -24,7 +24,10 @@ import kotlin.random.Random
 @Composable
 fun OrderDetail(
     modifier: Modifier = Modifier,
+    getTotalPrice: (Long) -> Unit,
 ) {
+
+
     Text(
         text = "MAIN COURSE",
         style = MaterialTheme.typography.labelSmall.copy(
@@ -36,11 +39,15 @@ fun OrderDetail(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
     ) {
+
         items(5) {
             val img =
                 rememberSaveable { mutableStateOf("https://picsum.photos/seed/${Random.nextInt()}/300/200") }.value
             val qty = rememberSaveable { mutableStateOf(Random.nextInt(1, 8)) }.value
             val price = remember { mutableStateOf(Random.nextLong(100000, 100000000)) }.value
+
+            getTotalPrice(price)
+
             OrderItem(
                 img = img,
                 qty = qty,
@@ -67,8 +74,8 @@ private fun OrderItem(
             .fillMaxWidth()
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
-        , horizontalArrangement = Arrangement.spacedBy(4.dp)
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
                 text = "x$qty",
@@ -80,7 +87,8 @@ private fun OrderItem(
                 contentDescription = null,
                 modifier = Modifier
                     .size(120.dp)
-                    .aspectRatio(3f / 2f).clip(MaterialTheme.shapes.medium)
+                    .aspectRatio(3f / 2f)
+                    .clip(MaterialTheme.shapes.medium)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
