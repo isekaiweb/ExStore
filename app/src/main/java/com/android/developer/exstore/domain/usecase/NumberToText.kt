@@ -15,8 +15,6 @@ class NumberToText {
             9 -> "sembilan"
             10 -> "sepuluh"
             11 -> "sebelas"
-            100 -> "seratus"
-            1000 -> "seribu"
             in 12..19 -> {
                 val units = number % 10
                 "${invoke(units)} belas"
@@ -30,7 +28,7 @@ class NumberToText {
                     "${invoke(tens)} puluh ${invoke(units)}"
                 }
             }
-            in 101..999 -> {
+            in 100..999 -> {
                 val hundreds = number / 100
                 val tens = number % 100
                 when (hundreds) {
@@ -50,7 +48,7 @@ class NumberToText {
                     }
                 }
             }
-            in 1001..999999 -> {
+            in 1000..999999 -> {
                 val thousands = number / 1000
                 val hundreds = number % 1000
 
