@@ -52,6 +52,7 @@ fun DefaultTextField(
     ),
     needFocus: Boolean = true,
     readOnly: Boolean = false,
+    colorHint: Color = MaterialTheme.colorScheme.onSurface,
     roundedSize: Int = 30,
     shape: Shape = RoundedCornerShape(roundedSize),
     focusManager: FocusManager = LocalFocusManager.current,
@@ -133,7 +134,7 @@ fun DefaultTextField(
                 .semantics {
                     testTag = TagsTextField.STANDARD_TEXT_FIELD
                 }
-                .border(width = 2.dp, color = colorBorder, shape = shape)
+                .border(width = 1.dp, color = colorBorder, shape = shape)
                 .focusRequester(focusRequester = focusRequester),
             shape = shape,
             placeholder = {
@@ -142,7 +143,7 @@ fun DefaultTextField(
                     style = TextStyle(
                         textIndent = TextIndent(firstLine = 1.sp),
                         fontSize = 18.sp,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = colorHint
                     )
                 )
             },
